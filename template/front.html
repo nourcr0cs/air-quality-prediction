@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap" rel="stylesheet">
+
+    <title>Air Quality Prediction</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: black;
+            position: relative;
+        }
+
+        /* Background */
+        body::before {
+            content: '';
+            position: fixed; /* Make the background fixed during scrolling */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                            farthest-side at 0% 100%, 
+                            #c2c2ffff 0%, 
+                            #c2e7ffff 25%, 
+                            #ffd1f9ff 50%, 
+                            #ecebffff 75%, 
+                            #c2c2ffff 100%
+                        ), 
+                        radial-gradient(
+                            farthest-corner at 100% 100%, 
+                            #c2c2ffff 0%, 
+                            #ecebffff 25%, 
+                            #ffd1f9ff 50%, 
+                            #c2e7ffff 75%, 
+                            #c2c2ffff 100%
+                        );
+            background-blend-mode: overlay;
+            z-index: -1; /* Make sure it's behind content */
+        }
+
+            .container {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(47, 43, 45, 0.8), 0 0 30px rgba(255, 192, 203, 0.5); /* Bright pink glow */
+                width: 90%;
+                max-width: 500px;
+                text-align: center;
+            }
+
+
+        .ft {
+            text-align: center;
+            color: #0f0e0e;
+            font-family: "Urbanist", serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .ftc {
+            text-align: center;
+            color: #f089c7;
+            font-family: "Urbanist", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: hsl(294, 65%, 81%);
+            border: none;
+            border-radius: 5px;
+            color: rgb(58, 56, 57);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: hsl(284, 73%, 90%);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Air Quality Predictor</h1>
+        <div class="ftc">Enter the details below to predict the air quality!</div>
+        <form action="http://127.0.0.1:5000/predict" method="POST" onsubmit="return validateForm()">
+            <label for="temperature" class="ft">Temperature:</label>
+            <input type="number" id="temperature" name="temperature" step="any" required><br><br>
+
+            <label for="humidity" class="ft">Humidity:</label>
+            <input type="number" id="humidity" name="humidity" step="any" required><br><br>
+
+            <label for="pm25" class="ft">PM2.5:</label>
+            <input type="number" id="pm25" name="pm25" step="any" required><br><br>
+
+            <label for="pm10" class="ft">PM10:</label>
+            <input type="number" id="pm10" name="pm10" step="any" required><br><br>
+
+            <label for="no2" class="ft">NO2:</label>
+            <input type="number" id="no2" name="no2" step="any" required><br><br>
+
+            <label for="so2" class="ft">SO2:</label>
+            <input type="number" id="so2" name="so2" step="any" required><br><br>
+
+            <label for="co" class="ft">CO:</label>
+            <input type="number" id="co" name="co" step="any" required><br><br>
+
+            <label for="proximity_to_industrial_areas" class="ft">Proximity to Industrial Areas:</label>
+            <input type="number" id="proximity_to_industrial_areas" name="proximity_to_industrial_areas" step="any" required><br><br>
+
+            <label for="population_density" class="ft">Population Density:</label>
+            <input type="number" id="population_density" name="population_density" step="any" required><br><br>
+
+            <button type="submit">Predict Air Quality</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            for (let input of inputs) {
+                if (isNaN(input.value) || input.value === "") {
+                    alert("Please enter valid numeric values.");
+                    return false; // Prevent form submission
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

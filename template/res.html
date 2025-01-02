@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap" rel="stylesheet">
+    <title>Air Quality Prediction Result</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            background: radial-gradient(
+                            farthest-side at 0% 100%, 
+                            #c2c2ffff 0%, 
+                            #c2e7ffff 25%, 
+                            #ffd1f9ff 50%, 
+                            #ecebffff 75%, 
+                            #c2c2ffff 100%
+                        ), 
+                        radial-gradient(
+                            farthest-corner at 100% 100%, 
+                            #c2c2ffff 0%, 
+                            #ecebffff 25%, 
+                            #ffd1f9ff 50%, 
+                            #c2e7ffff 75%, 
+                            #c2c2ffff 100%
+                        );
+            background-blend-mode: overlay;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(47, 43, 45, 0.8), 0 0 30px rgba(255, 192, 203, 0.5);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .result-text {
+            color: #f089c7;
+            font-family: "Urbanist", serif;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .back-btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: hsl(294, 65%, 81%);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: hsl(284, 73%, 90%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p class="result-text">The air quality is: <strong>{{ result }}</strong></p>
+        <a href="/" class="back-btn">Go Back</a>
+    </div>
+</body>
+</html>
